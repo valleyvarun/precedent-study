@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Courier New", Courier;
+}
+
+table {
+  width: 60vw;
+  max-width: 60vw;
+  margin-top: 2em;
+  border-collapse: collapse;
+  word-break: break-word;
+  margin: 50px;
+}
+@media (max-width: 600px) {
+  table {
+    width: 100vw;
+    max-width: 100vw;
+  }
+}
+td {
+  padding: 0.5em 1em;
+  vertical-align: top;
+}
+.label {
+  font-weight: bold;
+  text-align: right;
+  white-space: nowrap;
+}
+.value {
+  text-align: left;
+}
+
+table.bibliography td:last-child,
+table.bibliography th:last-child {
+  width: 20%;
+  min-width: 120px;
+  max-width: 40vw;
+}
