@@ -1,0 +1,193 @@
+body {
+  margin: 0;
+  background-color: black;
+  font-family: 'Courier New', monospace;
+  color: white;
+  padding: 2em;
+  overflow: hidden; /* only right side scrolls */
+}
+
+html, body { height: 100%; }
+
+.page {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+  height: calc(100vh - 4em); /* viewport minus body padding */
+}
+
+.right {
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* critical for nested scroll in grid */
+  overflow: hidden; /* clip to header + body; right-body will scroll */
+}
+
+.right-body {
+  flex: 1 1 auto;
+  min-height: 0; /* allow the flex child to be smaller than content to enable scrolling */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden; /* prevent horizontal scrollbar */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Ensure long lines/URLs wrap in lists */
+.references li,
+.links li,
+.links a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.mini-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #333;
+  position: sticky; /* stays visible while right scrolls */
+  top: 0;
+  background: black;
+  z-index: 10;
+}
+
+.mini-left,
+.mini-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.85em;
+}
+
+.mini-left { align-items: flex-start; }
+.mini-right { align-items: flex-end; }
+
+.mini-center {
+  justify-self: center;
+  text-transform: lowercase;
+  font-weight: 700;
+  font-size: 1.05em; /* slightly larger */
+}
+
+.mini-name {
+  font-weight: 700;
+  font-size: 1.05em; /* slightly larger */
+}
+
+.pdf-frame {
+  width: 90vh;
+  height: calc(100vh - 4em); /* fill available height next to right column */
+  max-width: 100%;
+  background: #111;
+  border: 1px solid #444;
+  box-shadow: 0 0 0 1px #000 inset;
+}
+
+#pdf-viewer {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #222;
+}
+
+h1, h1 a, p, a, li, ul {
+  color: white;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0 0 0.5em 0;
+}
+
+h1 a {
+  text-decoration: none;
+}
+
+p {
+  color: white;
+  font-size: 1.05em; /* slightly reduced */
+  line-height: 1.55;
+  margin-bottom: 1.2em;
+}
+
+/* Remove table styling as tables are no longer used */
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  color: #fff;
+  font-family: monospace;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+  .pdf-frame {
+    width: 100%;
+    height: 60vh;
+  }
+}
+
+/* New right column styles */
+.titles {
+  font-weight: 700;
+}
+
+.links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.links li {
+  margin: 0.6em 0;
+}
+
+.links a {
+  color: white;
+  text-decoration: underline;
+  font-size: 1.2em; /* larger for clarity */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.links a::after {
+  content: "↗"; /* link arrow */
+  font-size: 0.95em;
+}
+
+/* gap below links before references */
+.links { margin-bottom: 1.5rem; }
+
+/* References */
+.references h2 {
+  font-size: 1.1em;
+  margin: 0 0 0.5em 0;
+}
+
+.references ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.references li { margin: 0.35em 0; }
